@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const CountryDetails = () => {
     const {countryName} =useParams();
@@ -9,9 +9,16 @@ const CountryDetails = () => {
         .then(res => res.json())
         .then(data => setCountry(data))
     },[])
+    console.log(country)
     return (
         <div>
-           {console.log(country[0])}
+          {country.length && 
+            <div>
+                <p>Name: {country[0].name}</p>
+                <img style={{height: '100px'}} src={country[0].flag} alt=""/>
+                <p>Area Length: {country[0].area}</p>
+            </div>}
+            <Link to='/'>Home</Link>
         </div>
     );
 };
